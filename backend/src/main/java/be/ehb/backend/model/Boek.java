@@ -20,7 +20,7 @@ public class Boek {
     @NotBlank(message = "Auteurs mogen niet leeg zijn!")
     private String auteurs;
 
-    @Column(length = 640)
+    @Column(length = 3000)
     private String descriptie;
 
     @Positive(message = "Prijs moet groter zijn dan 0!")
