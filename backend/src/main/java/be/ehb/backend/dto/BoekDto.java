@@ -9,7 +9,7 @@ public record BoekDto(
         @NotBlank String titel,
         @NotBlank String auteurs,
         String descriptie,
-        @Positive double price,
+        @Positive double prijs,
         @Min(0) int stock,
         String genre
 ) {

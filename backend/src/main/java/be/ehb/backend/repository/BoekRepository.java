@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface BoekRepository extends CrudRepository<Boek, String> {
-    List<Boek> findByTitleContainingIgnoreCase(String title);
+    List<Boek> findByTitelContainingIgnoreCase(String title);
 }
