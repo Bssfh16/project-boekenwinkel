@@ -24,7 +24,7 @@ public class BoekController {
 
     @GetMapping
     public ResponseEntity<List<BoekDto>> getAllBoeken() {
-        return new ResponseEntity(boekService.getAllBoeken(), HttpStatus.OK);
+        return new ResponseEntity<>(boekService.getAllBoeken(), HttpStatus.OK);
     }
 
     @GetMapping("/{isbn}")
