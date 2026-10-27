@@ -30,11 +30,13 @@ public class ReviewService {
         this.gebruikerRepository = gebruikerRepository;
     }
 
-    /**
-     * Voegt een review toe indien de gebruiker het boek daadwerkelijk gekocht heeft.
-     */
+
     public ReviewResponseDto addReview(ReviewRequestDto dto) {
         if (!gebruikerRepository.existsById(dto.gebruikerId()) || !boekRepository.existsById(dto.boekIsbn())) {
+            return null;
+        }
+
+        if (reviewRepository.existsByGebruikerIdAndBoekIsbn(dto.gebruikerId(), dto.boekIsbn())) {
             return null;
         }
 
