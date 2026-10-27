@@ -44,7 +44,15 @@ public class ReservatieService {
                 return null;
             }
             Boek boek = boekRepository.findById(isbn).get();
-            if (boek.getStock() < 1) {
+
+            int aantalKeerGevraagd = 0;
+            for (String gevraagdIsbn : dto.boekIsbns()) {
+                if (gevraagdIsbn.equals(isbn)) {
+                    aantalKeerGevraagd++;
+                }
+            }
+
+            if (boek.getStock() < aantalKeerGevraagd) {
                 return null;
             }
             teReserverenBoeken.add(boek);
@@ -87,8 +95,10 @@ public class ReservatieService {
     }
 
     public ReservatieResponseDto toDto(Reservatie reservatie) {
+        List<String> isbns = new ArrayList<>();
         List<String> titels = new ArrayList<>();
         for (Boek boek : reservatie.getGereserveerdeBoeken()) {
+            isbns.add(boek.getIsbn());
             titels.add(boek.getTitel());
         }
         String bericht = "Bevestigd! Je kan je gereserveerde boeken afhalen en betalen vanaf " + reservatie.getAfhaalDatum() + ".";
@@ -96,6 +106,7 @@ public class ReservatieService {
         return new ReservatieResponseDto(
                 reservatie.getId(),
                 reservatie.getGebruiker().getGebruikersnaam(),
+                isbns,
                 titels,
                 reservatie.getReservatieDatum(),
                 reservatie.getAfhaalDatum(),

@@ -7,6 +7,7 @@ public record ReservatieResponseDto(
         int reservatieId,
         String gebruikersnaam,
         List<String> gereserveerdeTitels,
+        List<String> gereserveerdeIsbns,
         LocalDate reservatieDatum,
         LocalDate afhaalDatum,
         String bevestigingsBericht
