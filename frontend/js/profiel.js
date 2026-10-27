@@ -142,6 +142,7 @@ async function haalMijnReviewsOp() {
     try {
         const response = await fetch(URL + "/reviews/gebruiker/" + gebruiker.id);
         mijnReviews = await response.json();
+        mijnReviews.reverse();
 
         const container = document.getElementById("mijn-reviews-container");
         container.innerHTML = "";
@@ -170,6 +171,7 @@ async function haalReservatiesOp() {
     try {
         const response = await fetch(URL + "/reservaties/gebruiker/" + gebruiker.id);
         const reservaties = await response.json();
+        reservaties.reverse();
 
         const container = document.getElementById("reservaties-container");
         container.innerHTML = "";
