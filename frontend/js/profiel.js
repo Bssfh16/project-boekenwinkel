@@ -122,7 +122,7 @@ async function plaatsReservatie() {
             await haalMijnReviewsOp();
             await haalReservatiesOp();
         } else {
-            melding.innerHTML = "<div class='melding-fout'>Reservatie mislukt: onvoldoende voorraad voor het gekozen aantal.</div>";
+            melding.innerHTML = "<div class='melding-fout'>Reservatie mislukt: onvoldoende stock voor het gekozen aantal.</div>";
         }
     } catch (fout) {
         melding.innerHTML = "<div class='melding-fout'>Fout bij verbinden met de backend.</div>";
@@ -156,8 +156,9 @@ async function haalMijnReviewsOp() {
             const kaart = document.createElement("div");
             kaart.classList.add("card", "breed");
             kaart.innerHTML = `
-                <p><strong>Boek:</strong> ${r.boekTitel} <span class="klein">(Geplaatst op: ${r.datum || "vandaag"})</span></p>
-                <p><span class="sterren">${maakSterren(r.score)}</span> <strong>(${r.score}/5)</strong></p>
+                <p><strong>Boek:</strong> ${r.boekTitel}</p>
+                <p class="klein"><strong>Geplaatst op:</strong> ${r.datum || "vandaag"}</p>
+                <p><span class="sterren">${maakSterren(r.score)}</span></p>
                 <p>${r.tekst}</p>
             `;
             container.appendChild(kaart);

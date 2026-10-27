@@ -49,6 +49,7 @@ async function haalReviewsOp() {
     try {
         const response = await fetch(URL + "/reviews/boek/" + gekozenBoek.isbn);
         const reviews = await response.json();
+        reviews.reverse();
 
         const container = document.getElementById("reviews-lijst");
         container.innerHTML = "";
@@ -61,9 +62,10 @@ async function haalReviewsOp() {
         for (let r of reviews) {
             const kaart = document.createElement("div");
             kaart.classList.add("card", "breed");
-            let datumTekst = r.datum ? " (" + r.datum + ")" : "";
             kaart.innerHTML = `
-                <p><strong>${r.gebruikersnaam}</strong>${datumTekst} — <span class="sterren">${maakSterren(r.score)}</span> (${r.score}/5)</p>
+                <p><strong>Gebruiker:</strong> ${r.gebruikersnaam}</p>
+                <p class="klein"><strong>Geplaatst op:</strong> ${r.datum || "vandaag"}</p>
+                <p><span class="sterren">${maakSterren(r.score)}</span></p>
                 <p>${r.tekst}</p>
             `;
             container.appendChild(kaart);

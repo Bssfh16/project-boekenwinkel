@@ -101,7 +101,7 @@ public class ReservatieService {
             isbns.add(boek.getIsbn());
             titels.add(boek.getTitel());
         }
-        String bericht = "Bevestigd! Je kan je gereserveerde boeken afhalen en betalen vanaf " + reservatie.getAfhaalDatum() + ".";
+        String bericht = "Bevestigd, je kan je gereserveerde boeken afhalen vanaf " + reservatie.getAfhaalDatum() + ".";
 
         return new ReservatieResponseDto(
                 reservatie.getId(),
