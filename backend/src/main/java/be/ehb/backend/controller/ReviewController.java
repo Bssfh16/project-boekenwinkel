@@ -28,6 +28,11 @@ public class ReviewController {
         return new ResponseEntity<>(reviewService.getReviewsByBoekIsbn(isbn), HttpStatus.OK);
     }
 
+    @GetMapping("/gebruiker/{gebruikerId}")
+    public ResponseEntity<List<ReviewResponseDto>> getReviewsByGebruiker(@PathVariable int gebruikerId) {
+        return new ResponseEntity<>(reviewService.getReviewsByGebruikerId(gebruikerId), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<ReviewResponseDto> addReview(@Valid @RequestBody ReviewRequestDto dto) {
         ReviewResponseDto aangemaakt = reviewService.addReview(dto);

@@ -69,13 +69,23 @@ public class ReviewService {
         return lijst;
     }
 
+    public List<ReviewResponseDto> getReviewsByGebruikerId(int gebruikerId) {
+        List<ReviewResponseDto> lijst = new ArrayList<>();
+        for (Review review : reviewRepository.findByGebruikerId(gebruikerId)) {
+            lijst.add(toDto(review));
+        }
+        return lijst;
+    }
+
     public ReviewResponseDto toDto(Review review) {
         return new ReviewResponseDto(
                 review.getId(),
                 review.getBoek().getIsbn(),
+                review.getBoek().getTitel(),
                 review.getGebruiker().getGebruikersnaam(),
                 review.getScore(),
-                review.getTekst()
+                review.getTekst(),
+                review.getDatum()
         );
     }
 }

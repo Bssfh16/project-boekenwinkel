@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
+
 @Entity
 public class Review {
 
@@ -28,6 +30,8 @@ public class Review {
     @Column(length = 640)
     private String tekst;
 
+    private LocalDate datum;
+
     public Review() {
     }
 
@@ -36,6 +40,7 @@ public class Review {
         this.gebruiker = gebruiker;
         this.score = score;
         this.tekst = tekst;
+        this.datum = LocalDate.now();
     }
 
     public int getId() {
@@ -76,5 +81,13 @@ public class Review {
 
     public void setTekst(String tekst) {
         this.tekst = tekst;
+    }
+
+    public LocalDate getDatum() {
+        return datum;
+    }
+
+    public void setDatum(LocalDate datum) {
+        this.datum = datum;
     }
 }

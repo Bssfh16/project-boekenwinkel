@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
     List<Review> findByBoekIsbn(String isbn);
+    List<Review> findByGebruikerId(int gebruikerId);
     boolean existsByGebruikerIdAndBoekIsbn(int gebruikerId, String isbn);
 }
