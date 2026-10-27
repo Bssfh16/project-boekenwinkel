@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Boekenwinkel - Inloggen</title>
+    <link rel="stylesheet" href="css/boekenwinkel.css">
+</head>
+<body>
+<nav>
+    <a href="index.html" class="titel">Boekenwinkel</a>
+    <div id="nav-links" class="nav-rechts"></div>
+</nav>
+
+<main class="container">
+    <h1>Account</h1>
+    <div id="auth-melding"></div>
+
+    <div class="rij">
+        <div class="card helft">
+            <h2>Inloggen</h2>
+            <label for="login-naam">Gebruikersnaam:</label>
+            <input type="text" id="login-naam">
+
+            <label for="login-ww">Wachtwoord:</label>
+            <input type="password" id="login-ww">
+
+            <button id="login-knop">Inloggen</button>
+        </div>
+
+        <div class="card helft">
+            <h2>Registreren</h2>
+            <label for="reg-naam">Gebruikersnaam:</label>
+            <input type="text" id="reg-naam">
+
+            <label for="reg-email">E-mail:</label>
+            <input type="email" id="reg-email">
+
+            <label for="reg-ww">Wachtwoord:</label>
+            <input type="password" id="reg-ww">
+
+            <button id="register-knop">Account aanmaken</button>
+        </div>
+    </div>
+</main>
+
+<script src="js/navigatie.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

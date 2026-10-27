@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Boekenwinkel - Catalogus</title>
+    <link rel="stylesheet" href="css/boekenwinkel.css">
+</head>
+<body>
+<nav>
+    <a href="index.html" class="titel">Boekenwinkel</a>
+    <div id="nav-links" class="nav-rechts"></div>
+</nav>
+
+<main class="container">
+    <h1>Catalogus</h1>
+
+    <div class="filter-balk">
+        <input type="text" id="zoekbalk" placeholder="Zoek op titel of auteur...">
+        <select id="genreFilter">
+            <option value="">Alle genres</option>
+        </select>
+    </div>
+
+    <div id="resultaten" class="lijst"></div>
+</main>
+
+<script src="js/navigatie.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
