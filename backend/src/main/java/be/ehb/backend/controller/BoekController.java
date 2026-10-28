@@ -27,6 +27,7 @@ public class BoekController {
 
     /**
      * Alle boeken van de catalogus teruggeven.
+     * GET /boeken
      */
     @GetMapping
     public ResponseEntity<List<BoekDto>> getAllBoeken() {
@@ -35,6 +36,7 @@ public class BoekController {
 
     /**
      * 1 boek via ISBN-nummer teruggeven.
+     * GET /boeken/{isbn}
      */
     @GetMapping("/{isbn}")
     public ResponseEntity<BoekDto> getBoekByIsbn(@PathVariable String isbn) {
@@ -48,6 +50,7 @@ public class BoekController {
 
     /**
      * Boeken op basis van de titel opzoeken.
+     * GET /boeken/search?searchQuery=...
      */
     @GetMapping("/search")
     public ResponseEntity<List<BoekDto>> searchBoeken(@RequestParam String searchQuery) {
@@ -56,6 +59,7 @@ public class BoekController {
 
     /**
      * Een nieuw boek toevoegen aan de database.
+     * POST /boeken
      */
     @PostMapping
     public ResponseEntity<BoekDto> addBoek(@Valid @RequestBody BoekDto dto) {
@@ -65,6 +69,7 @@ public class BoekController {
 
     /**
      * De stock van een boek wijzigen.
+     * PUT /boeken/{isbn}/stock?newStock=...
      */
     @PutMapping("/{isbn}/stock")
     public ResponseEntity<BoekDto> updateStock(@PathVariable String isbn, @RequestParam int stock) {

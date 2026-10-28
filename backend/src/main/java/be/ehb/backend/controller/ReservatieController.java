@@ -28,6 +28,7 @@ public class ReservatieController {
 
     /**
      * Nieuwe reservaties voor een gebruiker aanmaken.
+     * POST /reservaties
      */
     @PostMapping
     public ResponseEntity<ReservatieResponseDto> addReservatie(@Valid @RequestBody ReservatieRequestDto dto) {
@@ -41,6 +42,7 @@ public class ReservatieController {
 
     /**
      * Alle reservaties van een gebruiker verkrijgen.
+     * GET /reservaties/gebruiker/{gebruikerId}
      */
     @GetMapping("/gebruiker/{gebruikerId}")
     public ResponseEntity<List<ReservatieResponseDto>> getReservatiesByGebruiker(@PathVariable int gebruikerId) {

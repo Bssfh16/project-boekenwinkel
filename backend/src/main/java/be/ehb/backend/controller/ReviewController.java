@@ -28,6 +28,7 @@ public class ReviewController {
 
     /**
      * Alle reviews voor een bepaald boek verkrijgen.
+     * GET /reviews/boek/{isbn}
      */
     @GetMapping("/boek/{isbn}")
     public ResponseEntity<List<ReviewResponseDto>> getReviewsByBoek(@PathVariable String isbn) {
@@ -36,6 +37,7 @@ public class ReviewController {
 
     /**
      * Alle reviews voor een bepaalde gebruiker verkrijgen.
+     * GET /reviews/gebruiker/{gebruikerId}
      */
     @GetMapping("/gebruiker/{gebruikerId}")
     public ResponseEntity<List<ReviewResponseDto>> getReviewsByGebruiker(@PathVariable int gebruikerId) {
@@ -44,6 +46,7 @@ public class ReviewController {
 
     /**
      * Nieuwe review aanmaken voor een gekocht boek.
+     * POST /reviews
      */
     @PostMapping
     public ResponseEntity<ReviewResponseDto> addReview(@Valid @RequestBody ReviewRequestDto dto) {

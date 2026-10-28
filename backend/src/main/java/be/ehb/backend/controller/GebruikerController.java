@@ -27,6 +27,7 @@ public class GebruikerController {
 
     /**
      * Een nieuwe gebruiker registreren.
+     * POST /gebruikers/register
      */
     @PostMapping("/register")
     public ResponseEntity<ProfielDto> registerGebruiker(@Valid @RequestBody RegistratieDto dto) {
@@ -40,6 +41,7 @@ public class GebruikerController {
 
     /**
      * Een bestaande gebruiker inloggen en profiel weergeven.
+     * POST /gebruikers/login
      */
     @PostMapping("/login")
     public ResponseEntity<ProfielDto> loginGebruiker(@Valid @RequestBody LoginDto dto) {
@@ -53,6 +55,7 @@ public class GebruikerController {
 
     /**
      * De gekochte boeken en profiel van een gebruiker verkrijgen.
+     * GET /gebruikers/{id}/profiel
      */
     @GetMapping("/{id}/profiel")
     public ResponseEntity<ProfielDto> getProfielById(@PathVariable int id) {
