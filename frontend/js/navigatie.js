@@ -33,7 +33,7 @@ function toonNavigatie() {
     if (gebruiker) {
         navContainer.innerHTML = `
             <a href="index.html">Catalogus</a>
-            <a href="profiel.html">Profiel & Mandje (${aantalInMandje})</a>
+            <a href="profiel.html">Winkelmandje & Profiel (${aantalInMandje})</a>
             <a href="#" id="uitlog-knop">Uitloggen (${gebruiker.gebruikersnaam})</a>
         `;
 
