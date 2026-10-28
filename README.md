@@ -30,18 +30,18 @@ Het onderwerp van de website is het reserveren van boeken van een boekenwinkel m
   - Comments bij code toevoegen.
 
 # Gebruikte Technologieën
-    - Java
-    - Spring Boot
-        - Dependencies:
-            - Spring Web
-            - H2 Database
-            - Spring Data Jpa
-            - Validation
-            - Spring Boot Actuator
-    - Maven
-    - HTML
-    - CSS
-    - Javascript
+- Java
+- Spring Boot
+    - Dependencies:
+        - Spring Web
+        - H2 Database
+        - Spring Data Jpa
+        - Validation
+        - Spring Boot Actuator
+  - Maven
+  - HTML
+  - CSS
+  - Javascript
 
 # Functionaliteiten
 - Het weergeven van alle boeken van de database op de cataloguspagina.
