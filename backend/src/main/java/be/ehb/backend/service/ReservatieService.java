@@ -15,6 +15,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service om reservaties aan te maken en te verkrijgen. De stock en de afhaaldatum worden automatisch berekend.
+ */
 @Service
 public class ReservatieService {
 
@@ -31,6 +34,9 @@ public class ReservatieService {
         this.gebruikerRepository = gebruikerRepository;
     }
 
+    /**
+     * Een nieuwe reservatie aanmaken als de stock van de boeken voldoende is. De stock verlaagt als een boek definitief gereserveerd en het boek wordt toegevoegd op de profiel.
+     */
     public ReservatieResponseDto addReservatie(ReservatieRequestDto dto) {
         if (!gebruikerRepository.existsById(dto.gebruikerId())) {
             return null;
@@ -77,6 +83,9 @@ public class ReservatieService {
         return toDto(opgeslagen);
     }
 
+    /**
+     * Alle gemaakte reservaties van een bepaalde gebruiker verkrijgen.
+     */
     public List<ReservatieResponseDto> getReservatiesByGebruiker(int gebruikerId) {
         List<ReservatieResponseDto> lijst = new ArrayList<>();
         for (Reservatie reservatie : reservatieRepository.findByGebruikerId(gebruikerId)) {
@@ -85,6 +94,9 @@ public class ReservatieService {
         return lijst;
     }
 
+    /**
+     * Methode om na te kijken of de gebruiker het boek al gereserveerd heeft of niet.
+     */
     private boolean heeftBoekAlGekocht(Gebruiker gebruiker, String isbn) {
         for (Boek gekocht : gebruiker.getGekochteBoeken()) {
             if (gekocht.getIsbn().equals(isbn)) {
@@ -94,6 +106,9 @@ public class ReservatieService {
         return false;
     }
 
+    /**
+     * Reservatie-entiteit omzetten naar ReservatieResponseDto.
+     */
     public ReservatieResponseDto toDto(Reservatie reservatie) {
         List<String> isbns = new ArrayList<>();
         List<String> titels = new ArrayList<>();

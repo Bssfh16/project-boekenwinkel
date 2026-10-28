@@ -8,6 +8,9 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Modelklasse voor een geregistreerde gebruiker om gereserveerde boeken bij te houden.
+ */
 @Entity
 public class Gebruiker {
 
@@ -34,6 +37,9 @@ public class Gebruiker {
     public Gebruiker() {
     }
 
+    /**
+     * Een nieuwe gebruiker aanmaken met gebruikersnaam, email en wachtwoord.
+     */
     public Gebruiker(String gebruikersnaam, String email, String wachtwoord) {
         this.gebruikersnaam = gebruikersnaam;
         this.email = email;

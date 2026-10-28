@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service om de boekencatalogus te beheren.
+ */
 @Service
 public class BoekService {
 
@@ -19,6 +22,9 @@ public class BoekService {
         this.boekRepository = boekRepository;
     }
 
+    /**
+     * Alle boeken van de database verkrijgen.
+     */
     public List<BoekDto> getAllBoeken() {
         List<BoekDto> boeken = new ArrayList<>();
         for (Boek boek : boekRepository.findAll()) {
@@ -27,6 +33,9 @@ public class BoekService {
         return boeken;
     }
 
+    /**
+     * 1 boek opzoeken via ISBN-nummer. Null als het boek niet bestaat.
+     */
     public BoekDto getBoekByIsbn(String isbn) {
         if (boekRepository.existsById(isbn)) {
             Boek boek = boekRepository.findById(isbn).get();
@@ -35,6 +44,9 @@ public class BoekService {
         return null;
     }
 
+    /**
+     * Boeken opzoeken als de titel overeenkomt met de zoekinput.
+     */
     public List<BoekDto> searchBoekenOpTitel(String zoekterm) {
         List<BoekDto> resultaat = new ArrayList<>();
         for (Boek boek : boekRepository.findByTitelContainingIgnoreCase(zoekterm)) {
@@ -43,6 +55,9 @@ public class BoekService {
         return resultaat;
     }
 
+    /**
+     * Een nieuw boek toevoegen of wijzigingen bewaren.
+     */
     public BoekDto saveBoek(BoekDto dto) {
         Boek boek = new Boek(
                 dto.isbn(),
@@ -57,6 +72,9 @@ public class BoekService {
         return toDto(opgeslagen);
     }
 
+    /**
+     * De stock van een boek aanpassen.
+     */
     public BoekDto updateStock(String isbn, int newStock) {
         if (newStock < 0 || !boekRepository.existsById(isbn)) {
             return null;
@@ -66,6 +84,9 @@ public class BoekService {
         return toDto(boekRepository.save(boek));
     }
 
+    /**
+     * Boekentiteit omzetten naar BoekDto.
+     */
     public BoekDto toDto(Boek boek) {
         return new BoekDto(
                 boek.getIsbn(),

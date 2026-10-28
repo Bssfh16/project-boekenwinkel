@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller voor het beheren en zoeken van boeken.
+ */
 @RestController
 @RequestMapping("/boeken")
 @CrossOrigin(origins = "*")
@@ -22,11 +25,17 @@ public class BoekController {
         this.boekService = boekService;
     }
 
+    /**
+     * Alle boeken van de catalogus teruggeven.
+     */
     @GetMapping
     public ResponseEntity<List<BoekDto>> getAllBoeken() {
         return new ResponseEntity<>(boekService.getAllBoeken(), HttpStatus.OK);
     }
 
+    /**
+     * 1 boek via ISBN-nummer teruggeven.
+     */
     @GetMapping("/{isbn}")
     public ResponseEntity<BoekDto> getBoekByIsbn(@PathVariable String isbn) {
         BoekDto gevonden = boekService.getBoekByIsbn(isbn);
@@ -37,17 +46,26 @@ public class BoekController {
         }
     }
 
+    /**
+     * Boeken op basis van de titel opzoeken.
+     */
     @GetMapping("/search")
     public ResponseEntity<List<BoekDto>> searchBoeken(@RequestParam String searchQuery) {
         return new ResponseEntity<>(boekService.searchBoekenOpTitel(searchQuery), HttpStatus.OK);
     }
 
+    /**
+     * Een nieuw boek toevoegen aan de database.
+     */
     @PostMapping
     public ResponseEntity<BoekDto> addBoek(@Valid @RequestBody BoekDto dto) {
         BoekDto created = boekService.saveBoek(dto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
+    /**
+     * De stock van een boek wijzigen.
+     */
     @PutMapping("/{isbn}/stock")
     public ResponseEntity<BoekDto> updateStock(@PathVariable String isbn, @RequestParam int stock) {
         BoekDto aangepast = boekService.updateStock(isbn, stock);

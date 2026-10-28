@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
+/**
+ * Model voor een review, waarvan de score 1-5, van een gereserveerd boek door een gebruiker.
+ */
 @Entity
 public class Review {
 
@@ -35,6 +38,9 @@ public class Review {
     public Review() {
     }
 
+    /**
+     * Een nieuwe review aanmaken met automatisch de datum van vandaag.
+     */
     public Review(Boek boek, Gebruiker gebruiker, int score, String tekst) {
         this.boek = boek;
         this.gebruiker = gebruiker;

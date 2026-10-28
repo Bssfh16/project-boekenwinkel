@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Modelklasse voor een reservatie, met reservatiedatum en afhaaldatum en bevestiging, van 1 of meer boeken door een gebruiker.
+ */
 @Entity
 public class Reservatie {
 
@@ -29,6 +32,9 @@ public class Reservatie {
     public Reservatie() {
     }
 
+    /**
+     * Een nieuwe reservatie aanmaken voor een gebruiker en een lijst boeken.
+     */
     public Reservatie(Gebruiker gebruiker, List<Boek> gereserveerdeBoeken, LocalDate reservatieDatum, LocalDate afhaalDatum, boolean bevestigd) {
         this.gebruiker = gebruiker;
         this.gereserveerdeBoeken = gereserveerdeBoeken;

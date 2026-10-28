@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service om te registreren, in te loggen en profielen te beheren.
+ */
 @Service
 public class GebruikerService {
 
@@ -25,6 +28,9 @@ public class GebruikerService {
         this.boekService = boekService;
     }
 
+    /**
+     * Een nieuwe gebruiker registreren als e-mail en gebruikersnaam nog niet genomen zijn.
+     */
     public ProfielDto registerGebruiker(RegistratieDto dto) {
         if (gebruikerRepository.existsByGebruikersnaam(dto.gebruikersnaam()) ||
                 gebruikerRepository.existsByEmail(dto.email())) {
@@ -35,6 +41,9 @@ public class GebruikerService {
         return toProfielDto(opgeslagen);
     }
 
+    /**
+     * nakijken of de gebruikersnaam en wachtwoord correct zijn.
+     */
     public ProfielDto loginGebruiker(LoginDto dto) {
         Gebruiker gevonden = gebruikerRepository.findByGebruikersnaam(dto.gebruikersnaam());
         if (gevonden != null && gevonden.getWachtwoord().equals(dto.wachtwoord())) {
@@ -43,6 +52,9 @@ public class GebruikerService {
         return null;
     }
 
+    /**
+     * Profiel van een gebruiker via ID verkrijgen.
+     */
     public ProfielDto getProfielById(int id) {
         if (gebruikerRepository.existsById(id)) {
             Gebruiker gevonden = gebruikerRepository.findById(id).get();
@@ -51,6 +63,9 @@ public class GebruikerService {
         return null;
     }
 
+    /**
+     * Gebruiker-entiteit omzetten naar ProfielDto.
+     */
     public ProfielDto toProfielDto(Gebruiker gebruiker) {
         List<BoekDto> boekenLijst = new ArrayList<>();
         for (Boek boek : gebruiker.getGekochteBoeken()) {

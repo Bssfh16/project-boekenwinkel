@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller voor het maken en bekijken van boekreservaties.
+ */
 @RestController
 @RequestMapping(value = "/reservaties")
 @CrossOrigin(origins = "*")
@@ -23,6 +26,9 @@ public class ReservatieController {
         this.reservatieService = reservatieService;
     }
 
+    /**
+     * Nieuwe reservaties voor een gebruiker aanmaken.
+     */
     @PostMapping
     public ResponseEntity<ReservatieResponseDto> addReservatie(@Valid @RequestBody ReservatieRequestDto dto) {
         ReservatieResponseDto bevestiging = reservatieService.addReservatie(dto);
@@ -33,6 +39,9 @@ public class ReservatieController {
         }
     }
 
+    /**
+     * Alle reservaties van een gebruiker verkrijgen.
+     */
     @GetMapping("/gebruiker/{gebruikerId}")
     public ResponseEntity<List<ReservatieResponseDto>> getReservatiesByGebruiker(@PathVariable int gebruikerId) {
         return new ResponseEntity<>(reservatieService.getReservatiesByGebruiker(gebruikerId), HttpStatus.OK);

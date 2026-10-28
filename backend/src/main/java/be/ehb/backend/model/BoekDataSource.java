@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+/**
+ * De database aanvullen met specifieke boeken bij het opstarten van de applicatie.
+ */
 @Component
 public class BoekDataSource implements CommandLineRunner {
 

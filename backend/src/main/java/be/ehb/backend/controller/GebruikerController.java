@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller voor het registreren, inloggen en verkrijgen van een gebruikersprofiel.
+ */
 @RestController
 @RequestMapping(value = "/gebruikers")
 @CrossOrigin(origins = "*")
@@ -22,6 +25,9 @@ public class GebruikerController {
         this.gebruikerService = gebruikerService;
     }
 
+    /**
+     * Een nieuwe gebruiker registreren.
+     */
     @PostMapping("/register")
     public ResponseEntity<ProfielDto> registerGebruiker(@Valid @RequestBody RegistratieDto dto) {
         ProfielDto aangemaakt = gebruikerService.registerGebruiker(dto);
@@ -32,6 +38,9 @@ public class GebruikerController {
         }
     }
 
+    /**
+     * Een bestaande gebruiker inloggen en profiel weergeven.
+     */
     @PostMapping("/login")
     public ResponseEntity<ProfielDto> loginGebruiker(@Valid @RequestBody LoginDto dto) {
         ProfielDto ingelogd = gebruikerService.loginGebruiker(dto);
@@ -42,6 +51,9 @@ public class GebruikerController {
         }
     }
 
+    /**
+     * De gekochte boeken en profiel van een gebruiker verkrijgen.
+     */
     @GetMapping("/{id}/profiel")
     public ResponseEntity<ProfielDto> getProfielById(@PathVariable int id) {
         ProfielDto profiel = gebruikerService.getProfielById(id);

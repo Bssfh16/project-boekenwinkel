@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
+/**
+ * Modelklasse voor een boek. Gegevens worden opgeslagen in tabellen van de database.
+ */
 @Entity
 public class Boek {
 
@@ -34,6 +37,9 @@ public class Boek {
     public Boek() {
     }
 
+    /**
+     * Een nieuw boek aanmaken met alle gegevens.
+     */
     public Boek(String isbn, String titel, String auteurs, String descriptie, double prijs, int stock, String genre) {
         this.isbn = isbn;
         this.titel = titel;

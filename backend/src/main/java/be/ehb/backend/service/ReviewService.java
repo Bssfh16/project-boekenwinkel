@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service om reviews toe te voegen en te verkrijgen. Controle of een boek gereserveerd is en er bestaat een limiet van 1 review per gebruiker per boek.
+ */
 @Service
 public class ReviewService {
 
@@ -30,7 +33,9 @@ public class ReviewService {
         this.gebruikerRepository = gebruikerRepository;
     }
 
-
+    /**
+     * Een nieuwe review toevoegen als de gebruiker het boek gereserveerd heeft en zijn mening nog niet heeft gegeven.
+     */
     public ReviewResponseDto addReview(ReviewRequestDto dto) {
         if (!gebruikerRepository.existsById(dto.gebruikerId()) || !boekRepository.existsById(dto.boekIsbn())) {
             return null;
@@ -61,6 +66,9 @@ public class ReviewService {
         return toDto(opgeslagen);
     }
 
+    /**
+     * Een lijst van alle reviews voor een bepaald boek, op basis van de ISBN, weergeven.
+     */
     public List<ReviewResponseDto> getReviewsByBoekIsbn(String isbn) {
         List<ReviewResponseDto> lijst = new ArrayList<>();
         for (Review review : reviewRepository.findByBoekIsbn(isbn)) {
@@ -69,6 +77,9 @@ public class ReviewService {
         return lijst;
     }
 
+    /**
+     * Een lijst van alle reviews van een bepaalde gebruiker weergeven.
+     */
     public List<ReviewResponseDto> getReviewsByGebruikerId(int gebruikerId) {
         List<ReviewResponseDto> lijst = new ArrayList<>();
         for (Review review : reviewRepository.findByGebruikerId(gebruikerId)) {
@@ -77,6 +88,9 @@ public class ReviewService {
         return lijst;
     }
 
+    /**
+     * Review-eniteit omzetten naar ReviewResponseDto.
+     */
     public ReviewResponseDto toDto(Review review) {
         return new ReviewResponseDto(
                 review.getId(),
