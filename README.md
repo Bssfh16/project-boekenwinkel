@@ -57,7 +57,7 @@ Het onderwerp van de website is het reserveren van boeken van een boekenwinkel m
 - Download IDEA Intellij, in het geval dit nog niet gedaan is.
 - Clone de Github Repository.
 - Start de backend-applicatie.
-  - Open project-boekenwinkel/backend/src/main/java/be.ehb/backend.
+  - Open project-boekenwinkel/backend/src/main/java/be.ehb.backend
   - Start BackendApplication.
 - Open nu de pagina index.html om de website visueel te verkrijgen
   - Rechtermuisknop op frontend/index.html
@@ -69,6 +69,24 @@ Het onderwerp van de website is het reserveren van boeken van een boekenwinkel m
 
 # Endpoints
 - Backend = localhost:8080
+  -  GET /boeken  ; een lijst van alle boeken uit de catalogus verkrijgen. 200
+  -  GET /boeken/{isbn}  ; de details van één bepaald boek via het ISBN-nummer verkrijgen. 200 OF 404.
+  -  GET /boeken/search?searchQuery=...  ; boeken zoeken waarvan de titel de zoekinput bevat. 200
+  -  POST /boeken  ; een nieuw boek toevoegen aan de database. 201 OF 400
+  -  PUT /boeken/{isbn}/stock?stock=...  ; de stock van een boek wijzigen. 200 OF 400.
+
+  -  POST /gebruikers/register  ; een nieuwe gebruiker registreren als gebruikersnaam en e-mail nog niet gebruikt zijn. 201 OF 400. 
+  -  POST /gebruikers/login  ; een gebruiker inloggen en het profiel teruggeven zonder wachtwoord. 200 OF 401.
+  -  GET /gebruikers/{id}/profiel  ; de profielgegevens van een gebruiker via ID verkrijgen. 200 OF 404.
+
+  -  POST /reservaties  ; een nieuwe reservatie maken, de stock verlagen en de afhaaldatum bepalen. 201 OF 400.
+  -  GET /reservaties/gebruiker/{gebruikerId}  ; alle reservaties van een specifieke gebruiker verkrijgen. 200.
+  
+  -  GET /reviews/boek/{isbn}  ; alle reviews voor een specifiek boek verkrijgen. 200.
+  -  GET /reviews/gebruiker/{gebruikerId}  ; alle reviews van een specifieke gebruiker verkrijgen. 200.
+  -  POST /reviews  ; een nieuwe review maken als de gebruiker het boek gereserveerd heeft en nog niet gereviewd heeft. 201 OF 400.
+  -  Statuscode : 200 = OK, 201 = CREATED, 400 = BAD REQUEST, 401 = UNAUTHORIZED, 404 = NOT FOUND  
+  - /actuator/health ; geeft als de backend actief of niet is.
   - /h2-console
     - om alle tabellen, en hun inhoud, van de database te bekijken.
     - Gebruik volgende inloggegevens om de database te bekijken, deze zijn ook verkrijgbaar in project-boekenwinkel/backend/src/main/resources/application.properties
@@ -77,11 +95,10 @@ Het onderwerp van de website is het reserveren van boeken van een boekenwinkel m
       - User Name = sa
       - Password = (leeg, niets schrijven)
 - Frontend = localhost:63342/project-boekenwinkel/frontend
-  - /index.html
-  - /boek.html
-  - /login.html
-  - /profiel.html
-
+  - /index.html ; Cataloguspagina van alle boeken met zoekbalk en filters.
+  - /boek.html ; Detailpagina van een bepaald boek met alle gegevens daarvan.
+  - /login.html ; Loginpagina, om zich in te loggen of zich te registreren.
+  - /profiel.html ; profielpagina, met winkelmandje, gegevens en reviews en reservaties van de gebruiker.
 
 # Bronnen
 - Cursus "Application Architecture"; raadpleegbaar via canvas.ehb.be
