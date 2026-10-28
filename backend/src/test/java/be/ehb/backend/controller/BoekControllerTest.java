@@ -11,11 +11,17 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit tests om de juiste HTTP-statuscodes te checken.
+ */
 class BoekControllerTest {
 
     BoekService boekService;
     BoekController boekController;
 
+    /**
+     * Voor elke test een mock BoekService maken en het sturen naar BoekController.
+     */
     @BeforeEach
     public void init() {
         this.boekService = Mockito.mock(BoekService.class);
@@ -32,6 +38,9 @@ class BoekControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
+    /**
+     * Testen of .200, OK teruggeeft als het boeg gevonden wordt.
+     */
     @Test
     public void expectedResultNotFound() {
         when(boekService.getBoekByIsbn("0000000000000")).thenReturn(null);
@@ -41,6 +50,9 @@ class BoekControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    /**
+     * Testen of .404, NOT_FOUND teruggegeven wordt als het boek niet bestaat.
+     */
     @Test
     public void expectedResultBadRequest() {
         when(boekService.updateStock("9789026167294", -5)).thenReturn(null);

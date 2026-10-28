@@ -20,6 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests om na te gaan of alleen maar de gereserveerde boeken maximum 1 keer gereviewd kunnen worden.
+ */
 class ReviewServiceTest {
 
     ReviewRepository reviewRepo;
@@ -31,6 +34,9 @@ class ReviewServiceTest {
     Gebruiker koper;
     Gebruiker nietKoper;
 
+    /**
+     * Voor elke test een koper en een niet-koper aan.
+     */
     @BeforeEach
     public void init() {
         this.reviewRepo = Mockito.mock(ReviewRepository.class);
@@ -48,6 +54,10 @@ class ReviewServiceTest {
         this.nietKoper.setId(2);
     }
 
+    /**
+     * Testen met verschillende positieve cijfers als een koper een review kan maken voor een gereserveerd boek.
+     * @param scoreInput
+     */
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 5})
     public void isReviewAllowedForPurchasedBoek(int scoreInput) {
@@ -66,6 +76,9 @@ class ReviewServiceTest {
         assertEquals(scoreInput, resultaat.score());
     }
 
+    /**
+     * Checken als het maken van een review geblokkeerd wordt als het boek niet gereserveerd wordt.
+     */
     @Test
     public void isReviewBlockedWhenBoekNotPurchased() {
         when(gebruikerRepo.existsById(2)).thenReturn(true);

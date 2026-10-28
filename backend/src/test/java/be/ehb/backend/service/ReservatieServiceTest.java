@@ -20,6 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests om de stock te verlagen, de afhaaldatum te bepalen en de reservatie te weigeren bij onvoldoende stock.
+ */
 class ReservatieServiceTest {
 
     ReservatieRepository reservatieRepo;
@@ -31,6 +34,9 @@ class ReservatieServiceTest {
     Boek beschikbaarBoek;
     Boek uitverkochtBoek;
 
+    /**
+     * Voor elke test een mock-repository, een beschikbaar boek en een testgebruiker en een uitverkocht boek zetten.
+     */
     @BeforeEach
     public void init() {
         this.reservatieRepo = Mockito.mock(ReservatieRepository.class);
@@ -45,6 +51,9 @@ class ReservatieServiceTest {
         this.uitverkochtBoek = new Boek("9789026169786", "Matilda", "Roald Dahl", "Meisje dat niet normaal is.", 24.99, 0, "Fantasie");
     }
 
+    /**
+     * Nagaan of de stock met 1 daalt en de afhaaldtatum bepaald wordt met +2 dagen bij een correcte reservatie. Het boek moet ook aan de gereserveerde boeken van de gebruiker toegevoegd worden.
+     */
     @Test
     public void isStockDecreasedAndAfhaalDatumSet() {
         when(gebruikerRepo.existsById(1)).thenReturn(true);
@@ -70,6 +79,9 @@ class ReservatieServiceTest {
         assertEquals(1, testGebruiker.getGekochteBoeken().size());
     }
 
+    /**
+     * Checken of de reservatie geweigerd wordt als de stock onvoldoende is.
+     */
     @Test
     public void isReservatieRefusedWhenOutOfStock() {
         when(gebruikerRepo.existsById(1)).thenReturn(true);
@@ -85,6 +97,9 @@ class ReservatieServiceTest {
         verify(reservatieRepo, never()).save(any(Reservatie.class));
     }
 
+    /**
+     * Checken of de volledige reservatie gestopt wordt en voorraad ongewijzigd blijft als de stock van het tweede boek onvoldoende is.
+     */
     @Test
     public void isFirstBoekStockUnchangedWhenSecondBoekIsOutOfStock() {
         when(gebruikerRepo.existsById(1)).thenReturn(true);

@@ -13,6 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests om de registratie en het inloggen te testen.
+ */
 class GebruikerServiceTest {
 
     GebruikerRepository gebruikerRepo;
@@ -20,6 +23,9 @@ class GebruikerServiceTest {
     GebruikerService gebruikerService;
     Gebruiker bestaandeGebruiker;
 
+    /**
+     * De mocks initialiseren en een bestaande testgebruiker aanmaken voor elke test.
+     */
     @BeforeEach
     public void init() {
         this.gebruikerRepo = Mockito.mock(GebruikerRepository.class);
@@ -30,6 +36,9 @@ class GebruikerServiceTest {
         this.bestaandeGebruiker.setId(1);
     }
 
+    /**
+     * Testen als een nieuwe gebruiker succesvol geregistreerd wordt als gebruikersnaam en email correct zijn.
+     */
     @Test
     public void isNewGebruikerRegisteredSuccessfully() {
         when(gebruikerRepo.existsByGebruikersnaam("Kristof")).thenReturn(false);
@@ -46,6 +55,9 @@ class GebruikerServiceTest {
         assertEquals("Kristof", resultaat.gebruikersnaam());
     }
 
+    /**
+     * Controleren als registratie geweigerd wordt als de gebruikersnaam al bestaat.
+     */
     @Test
     public void isDuplicateGebruikersnaamRejected() {
         when(gebruikerRepo.existsByGebruikersnaam("Michiel")).thenReturn(true);
@@ -57,6 +69,9 @@ class GebruikerServiceTest {
         verify(gebruikerRepo, never()).save(any(Gebruiker.class));
     }
 
+    /**
+     * Controleren als registratie geweigerd wordt als de email al gebruikt is.
+     */
     @Test
     public void isDuplicateEmailRejected() {
         when(gebruikerRepo.existsByGebruikersnaam("Peter")).thenReturn(false);
@@ -68,6 +83,9 @@ class GebruikerServiceTest {
         assertNull(resultaat);
     }
 
+    /**
+     * Checken als inloggen met een fout wachtwoord, null teruggeeft.
+     */
     @Test
     public void isLoginWithWrongPasswordRejected() {
         when(gebruikerRepo.findByGebruikersnaam("Michiel")).thenReturn(bestaandeGebruiker);
@@ -78,6 +96,9 @@ class GebruikerServiceTest {
         assertNull(resultaat);
     }
 
+    /**
+     * Checken als inloggen met juiste wachtwoord juiste ProfielDTO teruggeeft.
+     */
     @Test
     public void isLoginWithCorrectPasswordAccepted() {
         when(gebruikerRepo.findByGebruikersnaam("Michiel")).thenReturn(bestaandeGebruiker);
