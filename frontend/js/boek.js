@@ -39,7 +39,7 @@ async function haalBoekDetailsOp() {
             voegToeAanMandje(boek, aantal);
         };
     } catch (fout) {
-        console.error("Fout bij ophalen boek:", fout);
+        console.error("Fout bij het ophalen van de boek:", fout);
     }
 }
 

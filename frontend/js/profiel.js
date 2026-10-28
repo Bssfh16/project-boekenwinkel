@@ -17,7 +17,7 @@ async function haalProfielOp() {
             <p><strong>E-mail:</strong> ${data.email}</p>
         `;
     } catch (fout) {
-        console.error("Fout bij ophalen profiel:", fout);
+        console.error("Fout bij het ophalen van de profiel:", fout);
     }
 }
 
@@ -29,7 +29,7 @@ function toonMandje() {
     container.innerHTML = "";
 
     if (mandje.length === 0) {
-        container.innerHTML = "<p>Je mandje is leeg.</p>";
+        container.innerHTML = "<p>Jouw winkelmandje is leeg.</p>";
         reserveerKnop.style.display = "none";
         return;
     }
@@ -125,7 +125,7 @@ async function plaatsReservatie() {
             melding.innerHTML = "<div class='melding-fout'>Reservatie mislukt: onvoldoende stock voor het gekozen aantal.</div>";
         }
     } catch (fout) {
-        melding.innerHTML = "<div class='melding-fout'>Fout bij verbinden met de backend.</div>";
+        melding.innerHTML = "<div class='melding-fout'>Fout bij het verbinden met de backend.</div>";
     }
 }
 

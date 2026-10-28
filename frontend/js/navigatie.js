@@ -104,5 +104,5 @@ function voegToeAanMandje(boek, gekozenAantal) {
 
     localStorage.setItem("mandje", JSON.stringify(mandje));
     toonNavigatie();
-    alert(aantal + "x '" + boek.titel + "' toegevoegd aan jouw mandje!");
+    alert(aantal + "x '" + boek.titel + "' toegevoegd aan jouw winkelmandje!");
 }
